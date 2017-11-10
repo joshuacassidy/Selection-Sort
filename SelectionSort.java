@@ -1,16 +1,16 @@
-public class SelectionSort {
+public class SelectionSort<T extends Comparable<T>> {
 
-    public int[] sort(int[] listOfItems) {
+    public T[] sort(T[] listOfItems) {
         for (int i = 0; i < listOfItems.length-1; i++) {
             int index = i;
             for (int j = i+1; j < listOfItems.length; j++) {
-                if (listOfItems[j] < listOfItems[index]){
+                if (listOfItems[j].compareTo(listOfItems[index]) < 0){
                     index = j;
                 }
             }
 
             if (index != i) {
-                int temp = listOfItems[i];
+                T temp = listOfItems[i];
                 listOfItems[i] = listOfItems[index];
                 listOfItems[index] = temp;
             }
@@ -19,9 +19,9 @@ public class SelectionSort {
         return listOfItems;
     }
 
-    public void showArray(int[] listOfItems){
+    public void showArray(Integer[] listOfItems){
         for(int i: listOfItems) {
-            System.out.print(i + " ");
+            System.out.printf("%s ",i);
         }
     }
 
