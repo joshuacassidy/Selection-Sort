@@ -13,38 +13,28 @@ public class SelectionSort<T extends Comparable<T>> {
                 listOfItems[i] = listOfItems[index];
                 listOfItems[index] = temp;
             }
-
         }
         return listOfItems;
     }
 
     public T[] recursiveSort(T[] listOfItems, int i) {
-        if (i < listOfItems.length) {
-            int index = recursiveSubSort(listOfItems,i,i+1);
-            if (index != i) {
-                T temp = listOfItems[i];
-                listOfItems[i] = listOfItems[index];
-                listOfItems[index] = temp;
-            }
-            return recursiveSort(listOfItems, i+1);
+        int index = recursiveSubSort(listOfItems,i,i+1);
+        if (index != i) {
+            T temp = listOfItems[i];
+            listOfItems[i] = listOfItems[index];
+            listOfItems[index] = temp;
         }
-
-        return listOfItems;
+        return i < listOfItems.length ? recursiveSort(listOfItems, i+1) : listOfItems;
     }
 
     public int recursiveSubSort(T[] listOfItems, int index, int j) {
-        if (j < listOfItems.length){
-            if (listOfItems[j].compareTo(listOfItems[index]) < 0){
-                index = j;
-            }
-            return recursiveSubSort(listOfItems,index,j+1);
-        }
-        return index;
+        index = j < listOfItems.length && listOfItems[j].compareTo(listOfItems[index]) < 0 ? j : index;
+        return j < listOfItems.length ? recursiveSubSort(listOfItems,index,j+1) : index;
     }
 
 
-    public void showArray(Integer[] listOfItems){
-        for(int i: listOfItems) {
+    public void showArray(T[] listOfItems){
+        for(T i: listOfItems) {
             System.out.printf("%s ",i);
         }
     }
