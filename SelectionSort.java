@@ -8,23 +8,20 @@ public class SelectionSort<T extends Comparable<T>> {
                     index = j;
                 }
             }
-            if (index != i) {
-                T temp = listOfItems[i];
-                listOfItems[i] = listOfItems[index];
-                listOfItems[index] = temp;
-            }
+        T temp = listOfItems[i];
+        listOfItems[i] = listOfItems[index];
+        listOfItems[index] = temp;
+
         }
         return listOfItems;
     }
 
     public T[] recursiveSort(T[] listOfItems, int i) {
         int index = recursiveSubSort(listOfItems,i,i+1);
-        if (index != i) {
-            T temp = listOfItems[i];
-            listOfItems[i] = listOfItems[index];
-            listOfItems[index] = temp;
-        }
-        return i < listOfItems.length ? recursiveSort(listOfItems, i+1) : listOfItems;
+        T temp = listOfItems[i];
+        listOfItems[i] = listOfItems[index];
+        listOfItems[index] = temp;
+        return i < listOfItems.length-1 ? recursiveSort(listOfItems, i+1) : listOfItems;
     }
 
     public int recursiveSubSort(T[] listOfItems, int index, int j) {
